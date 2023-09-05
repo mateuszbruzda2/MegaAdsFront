@@ -6,6 +6,6 @@ interface Props {
     text: string;
 }
 
-export const Btn = (props: Props) => {
+export const Btn = (props: Props) => (
     <button>{props.text}</button>
-};
+)
