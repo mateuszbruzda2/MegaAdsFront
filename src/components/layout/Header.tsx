@@ -1,16 +1,27 @@
-import React from "react";
+import React, { FormEventHandler, SyntheticEvent, useContext, useState } from "react";
 import { Btn } from "../common/Btn";
 
 import './Header.css'
+import { SearchContext } from "src/contexts/context";
 
-export const Header = () => (
+export const Header = () => {
+  const{setSearch, search} = useContext(SearchContext);
+  const[inputVal, setInputVal] = useState(search);
+
+  const setSearchFromLocalState = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setSearch(inputVal);
+  };
+  
+  return (
     <header>
-    <h1>
-      <strong>Mega </strong> Ogłoszenia
-    </h1>
-    <Btn text="Dodaj ogłoszenie"/>
-    <div className='search'>
-      <input type="text"/> <Btn text="Szukaj"/>
-    </div>
-  </header>
-);
+      <h1>
+        <strong>Mega </strong> Ogłoszenia
+      </h1>
+      <Btn text="Dodaj ogłoszenie"/>
+      <form className='search' onSubmit={setSearchFromLocalState}>
+        <input type="text" value={inputVal} onChange={e => setInputVal(e.target.value)}/> <Btn text="Szukaj"/>
+      </form>
+  </header>);
+
+};
