@@ -1,4 +1,4 @@
-import React, { FormEventHandler, SyntheticEvent, useContext, useState } from "react";
+import React, { SyntheticEvent, useContext, useState } from "react";
 import { Btn } from "../common/Btn";
 
 import './Header.css'

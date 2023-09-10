@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { apiURL } from "src/config/api";
 import { AdEntity } from "types";
 
 interface Props{
@@ -10,15 +11,15 @@ export const SingleAd = (props: Props)=>{
     
     useEffect(()=>{
         (async()=>{
-
-            const res = await fetch(`http://localhost:3001/ad/search/${props.id}`);
+            const res = await fetch(`${apiURL}/ad/search/${props.id}`);
+            // const res = await fetch(`http://localhost:3001/ad/search/${props.id}`);
             const data = await res.json();
 
             setAd(data);
 
         })();
          
-    }, []);
+    },[]);
 
     if (ad === null){
         return <p>Wczytywanie... </p>
